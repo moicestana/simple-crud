@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+  <div class="container">
+    <div class="row">
+      <% @items.each do |item| %> 
+      <div class="col mb-3">
+        <div class="card h-100" style="width: 12rem;">
+          <h7 class="card-header text-muted"><%= item.category %></h7>
+          <div class="card-body">
+            <h5 class="card-title"><%= item.name %></h5>
+            Rp<%= item.price %>
+          </div>
+          <%= link_to "Detail Item", item, class: 'btn btn-primary' %>
+        </div>    
+      </div>
+      <% end %>
+    </div>  
+    <%= link_to "Tambah Item", new_item_path, class: 'btn btn-primary'%>
+  </div>  
