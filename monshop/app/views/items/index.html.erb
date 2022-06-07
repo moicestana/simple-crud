@@ -1,19 +1,42 @@
-<p style="color: green"><%= notice %></p>
+<nav class="navbar navbar-dark bg-info">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/items">MonShop</a>
+    <form class="d-flex justify-content-center">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-light" type="submit">Search</button>
+    </form>
+      <% if current_user %>
+        <%= button_to 'Logout', user_logout_path(current_user), method: :delete, class: 'btn btn-outline-light' %>
+      <% end %>
+      <% if !current_user %>
+        <%= link_to 'Login', form_login_path, class: 'btn btn-outline-light' %> 
+      <% end %>  
+  </div>
+</nav>
+<% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+<% end %>
+
+<% if alert %>
+    <div class="alert alert-danger"><%= alert %></div>
+<% end %>
 
   <div class="container">
-    <div class="row">
+    <div class="row justify-content-md-center mt-4 h-100">
       <% @items.each do |item| %> 
       <div class="col mb-3">
-        <div class="card h-100" style="width: 12rem;">
+        <div class="card h-100" style="width: 15rem;">
           <h7 class="card-header text-muted"><%= item.category %></h7>
           <div class="card-body">
             <h5 class="card-title"><%= item.name %></h5>
             Rp<%= item.price %>
           </div>
-          <%= link_to "Detail Item", item, class: 'btn btn-primary' %>
+          <%= link_to "Detail Item", item, class: 'btn btn-info' %>
         </div>    
       </div>
       <% end %>
-    </div>  
-    <%= link_to "Tambah Item", new_item_path, class: 'btn btn-primary'%>
+    </div>
+    <% if current_user %>  
+      <%= link_to "Tambah Item", new_item_path, class: 'btn btn-info'%>
+    <% end %>  
   </div>  

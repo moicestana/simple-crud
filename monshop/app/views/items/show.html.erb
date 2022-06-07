@@ -1,10 +1,31 @@
-<p style="color: green"><%= notice %></p>
+<nav class="navbar navbar-dark bg-info">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/items">MonShop</a>
+    <form class="d-flex">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-light" type="submit">Search</button>
+    </form>
+      <% if current_user %>
+        <%= button_to 'Logout', user_logout_path(current_user), method: :delete, class: 'btn btn-outline-light' %>
+      <% end %>
+      <% if !current_user %>
+        <%= link_to 'Login', form_login_path, class: 'btn btn-outline-light' %> 
+      <% end %> 
+  </div>
+</nav>
+<% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+<% end %>
+
+<% if alert %>
+    <div class="alert alert-danger"><%= alert %></div>
+<% end %>
 
 <%= render @item %>
 
 <div>
-  <%= link_to "Edit this item", edit_item_path(@item) %> |
-  <%= link_to "Back to items", items_path %>
-
-  <%= button_to "Destroy this item", @item, method: :delete %>
+  <%= link_to "Ubah Item", edit_item_path(@item), class: 'btn btn-info' %> |
+  <%= link_to "Kembali", items_path, class: 'btn btn-info' %>
 </div>
+  <br>
+  <%= button_to "Hapus Item", @item, method: :delete, class: 'btn btn-info' %>

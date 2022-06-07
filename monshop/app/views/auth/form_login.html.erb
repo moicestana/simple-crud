@@ -1,0 +1,33 @@
+<% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+<% end %>
+
+<% if alert %>
+    <div class="alert alert-danger"><%= alert %></div>
+<% end %>
+<section class="h-100">
+	<div class="container h-100">
+		<div class="row justify-content-md-center mt-5 h-100">
+			<div class="card-wrapper mt-5">
+				<div class="brand">
+					<h1 class="text-center text-info">MonShop</h1>
+				</div>
+				<div class="card fat mt-4 border-info" style="width: 22rem;">
+					<div class="card-body">
+						<h4 class="card-title text-center text-info">Login</h4>
+                        <%= form_tag controller: :auth, action: :login, local: true do %>
+                            <label for="username">Username :</label>
+                            <%= text_field_tag :username, '', placeholder: 'Username', class: 'form-control'%>
+                            <label for="password">Password :</label>
+                            <%= password_field_tag :password, '', placeholder: 'Password', class: 'form-control'%><br>
+                            <%= submit_tag 'Login', class: 'btn btn-info btn-block' %>
+                        <% end %>
+					</div>
+				</div>
+				<div class="footer text-center">
+						Copyright &copy; 2022 &mdash; <%= link_to "MonShop", root_path, class: 'link-info' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
+  before_action :user_signed_in?, except: %i[ show index ]
   before_action :set_item, only: %i[ show edit update destroy ]
-
+  helper_method :current_user
   # GET /items or /items.json
   def index
     @items = Item.all
